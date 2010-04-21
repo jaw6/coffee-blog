@@ -1,0 +1,30 @@
+h1. Coffee Blog
+
+This is a simple demo app, written in coffeescript with express/node.js and mongodb.
+
+h2. Getting start
+
+You'll need to install:
+
+* "mongodb":http://shiftcommathree.com/articles/how-to-install-mongodb-on-os-x (1.4.0)
+* "coffee-script":http://jashkenas.github.com/coffee-script/#installation (0.6.1)
+* "node":http://github.com/ry/node (v0.1.91)
+* "kiwi":http://github.com/visionmedia/kiwi (0.3.0)
+
+Then install using kiwi:
+
+* express 0.9.0
+* haml 0.3.0
+* mongodb-native 0.7.1
+
+Then run:
+
+@$ coffee app.coffee@
+
+And visit @localhost:3000@ in your browser.
+
+h2. What works right now
+
+* View all posts
+* Show a post, including comments
+* Add comments to a post
