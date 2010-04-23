@@ -2,7 +2,7 @@ h1. Coffee Blog
 
 This is a simple demo app, written in coffeescript with express/node.js and mongodb. I've been following along with Ciaran Jessup's "excellent tutorial":http://howtonode.org/express-mongodb, but working in coffeescript whenever practical.
 
-h2. Getting start
+h2. Getting started
 
 You'll need to install:
 
@@ -28,7 +28,4 @@ h2. What works right now
 * View all posts
 * Show a post, including comments
 * Add comments to a post
-
-h2. Todo
-
-* Put a cappuccino front end on it ala "this series":http://cappuccinocasts.com/2009/05/11/8-cappuccino-and-ruby-on-rails-the-weblog-application-part-1/
+* Cappuccino-based "admin" area - it's a clone of the blog app from "CappuccinoCasts":http://cappuccinocasts.com/2009/05/11/8-cappuccino-and-ruby-on-rails-the-weblog-application-part-1/ with very little modification needed to run on top of Express (instead of Rails)
