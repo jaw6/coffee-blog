@@ -31,6 +31,14 @@ get '/posts', ->
 		}
 	)
 
+get '/posts.json', ->
+	articleProvider.findAll ((error, docs) =>
+		@contentType 'json'
+		@halt 200, JSON.stringify(docs.map ((article) ->
+			{post: {id: article._id.toHexString(), title: article.title, body: article.body} }
+		))
+	)
+
 get '/posts/new', ->
 	@render 'posts_new.html.haml', {
 		locals: {
@@ -46,6 +54,17 @@ post '/posts/new', ->
 		@redirect '/posts'
 	)
 
+post '/posts.json', ->
+	# decoded: JSON.decode(@body)
+	# sys.puts JSON.decode(@body).post
+	post: JSON.decode(@body).post
+	articleProvider.save {
+		title: post.title,
+		body: post.body
+	}, ((error, docs) =>
+		@halt 200, 'OK'
+	)
+
 get '/posts/*', (id)->
 	articleProvider.findById id, ((error, doc) =>
 		@render 'posts_show.html.haml', {
@@ -56,7 +75,33 @@ get '/posts/*', (id)->
 		}
 	)
 
-post '/posts/*/comments/new', (id) ->
+post '/posts/:id/delete', (id)->
+	articleProvider.findAndDestroy id, ((error, doc) =>
+		if(error) 
+			@halt 503, "Didn't work"
+		else 
+			@redirect '/posts'
+	)
+
+put '/posts/:id.json', (id)->
+	data: JSON.decode(@body).post
+	articleProvider.update id, data, ((error, doc) =>
+		if(error)
+			@halt 503, 'Update failed'
+		else
+			@halt 200, 'OK'
+	)
+
+del '/posts/:id.json', (id)->
+	articleProvider.findAndDestroy id, ((error, doc) =>
+		if(error)
+			@halt 503, "Didn't work"
+		else
+			@halt 200, 'OK'
+	)
+
+
+post '/posts/:id/comments/new', (id) ->
 	data = {
 		person: @param('person'),
 		comment: @param('comment')

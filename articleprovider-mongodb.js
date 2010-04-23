@@ -81,4 +81,32 @@ ArticleProvider.prototype.save = function(articles, callback) {
     });
 };
 
+ArticleProvider.prototype.update = function(id, data, callback) {
+	this.getCollection(function(error, article_collection) {
+		if(error) callback(error)
+		else {
+			data.updated_at = new Date();
+			article_collection.update({_id: ObjectID.createFromHexString(id)},
+				data,
+				{},
+				function(error, article) {
+					if (error) callback(error);
+					else callback(null, article);
+				}
+			)
+		}
+	})
+}
+
+ArticleProvider.prototype.findAndDestroy = function(id, callback) {
+	this.getCollection(function(error, article_collection) {
+		if (error) callback(error)
+		else {
+			article_collection.remove({_id: ObjectID.createFromHexString(id)}, function(error, collection) {
+				callback(null, collection);
+			})
+		}
+	})
+}
+
 exports.ArticleProvider = ArticleProvider;
