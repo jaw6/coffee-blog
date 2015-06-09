@@ -28,4 +28,4 @@ h2. What works right now
 * View all posts
 * Show a post, including comments
 * Add comments to a post
-* Cappuccino-based "admin" area - it's a clone of the blog app from "CappuccinoCasts":http://cappuccinocasts.com/2009/05/11/8-cappuccino-and-ruby-on-rails-the-weblog-application-part-1/ with very little modification needed to run on top of Express (instead of Rails)
+* Cappuccino-based "admin" area - it's a clone of the blog app from "CappuccinoCasts":http://oldblog.balthazar.info/2009/05/11/8-cappuccino-and-ruby-on-rails-the-weblog-application-part-1/ with very little modification needed to run on top of Express (instead of Rails)
